@@ -1,9 +1,17 @@
+import {useState} from 'react'
 
 import { CORE_CONCEPTS } from "./data.js";
 import Header from "./components/Header/Header.jsx";
 import CoreConcept from "./components/CoreConcept.jsx";
 import TabButton from './components/TabButton.jsx';
 function App() {
+  // 컴포넌트 함수의 최 상위에 호출되어야 함.
+  useState('please click a button')
+
+  function handleSelect(selectedButton) {
+    tabContent = selectedButton
+  }
+
   // 어떤 버튼을 클릭하는지를 받아야 함
   function handleSelect(selectedButton) {
     // 컴포넌트를 클릭하면 => 해당하는 것 보여주기
