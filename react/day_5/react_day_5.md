@@ -3,6 +3,9 @@
     이를 react Hooks이라고 부름(use로 시작하는 모든 함수)
     - 리액트 훅의 특별한 점은 리액트 컴포넌틑 함수 또는 다른 리액트 Hook안에서 호출되어야 함.
     - 컴포넌트 함수의 최상위에 호출되어야 함 다른 내부 함수에 중첩되면 안되며 if나 loop도 안됨.
+    - useState는 두개의 값을 반환함[값, function]
+    ![Alt text](image.png)
+    식으로 value는 0이 저장되고 setValue는 value로 저장된 값이 온다
 
 
 
