@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';  // 잠깐 저장하는 공간
 
@@ -6,8 +5,15 @@ function App() {
 
   let [글제목, 글제목변경] = useState(['남자코트 추천', '강남 우동맛집', '파이썬독학'])
   // 사용시 오른쪽을 호출(왼쪽+상호작용) 시 왼쪽이 바뀜
-  let [따봉, 따봉변경] = useState(0)
+  let 리스트길이 = []
+  글제목.map(function(글, i){
+    리스트길이.push(0)
+    return
+
+  })
+  let [따봉, 따봉변경] = useState(리스트길이)
   let [modal, setModal] = useState(false)
+  console.log(글제목)
 
   return (
     <div className="App">
@@ -29,26 +35,17 @@ function App() {
         copy[0] = "여자코트 추천"
         글제목변경(copy)  // 이건 전의 데이터와 현재의 데이터가 같은걸 가르키나 확인하는 역할
       }}>글수정</button>
-
-      <div className="list">
-        <h4>{ 글제목[0] } <span onClick={()=> {따봉변경(따봉+1) }}>❤</span> { 따봉 } </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4>{ 글제목[1] } </h4>
-        <p>2월 17일 발행</p>
-      </div>
-      <div className="list">
-        <h4 onClick={()=>{ modal === true ? setModal(false) : setModal(true) }}>{ 글제목[2] } </h4>
-        <p>2월 17일 발행</p>
-      </div>
-
+      
       { // 리스트.map(function(오브젝트, 0부터+1){return()} 식 리스트만큼 반복
         글제목.map(function(제목, i){
           return (
             <div className="list" key={i}>
               <h4 onClick={()=>{ modal === true ? setModal(false) : setModal(true) }}>{ 글제목[i] } </h4>
-              <p>2월 17일 발행 <span onClick={()=> {따봉변경(따봉+1) }}>❤</span> { 따봉 } </p>
+              <p>2월 17일 발행 <span onClick={()=> {
+                // 복사체를 만들어 그 복사체를 수정해주고 그 수정한걸 바꿀함수에 넣기
+                let ddabong = [...따봉]
+                ddabong[i] = ddabong[i] + 1
+                따봉변경(ddabong)}}>❤</span> { 따봉[i] } </p>
             </div>
           )
         })
@@ -56,19 +53,22 @@ function App() {
       
       {
         // 조건식 ? 참일때 실행할 코드 : 거짓일 때 실행할 코드
-        modal === true ? <Modal /> : null
-      }      
+        modal === true ? <Modal color={'skyblue'} 글제목={글제목} 글제목변경={글제목변경} /> : null
+      }
+  
     </div>
   );
 }
 
 // const Modal = () => {} 식으로 모달을 만들수도 있음
-function Modal() {
+function Modal(props) {
   return(
-    <div className="modal">
-      <h4>제목</h4>
+    <div className="modal" style={{background : props.color}}>
+      <h4>{props.글제목[0]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
+      {/* 누르면 첫 글 제목이 여자코트 추천으로 */}
+      <button onClick={() => { let copy2 = ['여자코트 추천', '강남 우동맛집', '파이썬독학']; props.글제목변경(copy2) }} >글수정</button>
     </div>
   )
 }
