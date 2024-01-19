@@ -1,30 +1,24 @@
-import {useState} from'react';
-import './App.css';
 import { Button, Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import data from './data.js'
+import {useState} from'react';
 
+export default function ProductList() {
 
-
-function App() {
-
-  let [shoes] = useState(data)
+    let [shoes] = useState(data)
 
   return (
-    <div className="App">
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">리액트 쇼필몰</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">홈</Nav.Link>
-            <Nav.Link href="#features">제품</Nav.Link>
-            <Nav.Link href="#pricing">환불</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-      <div className="mainBg"></div>
-
-      <Container>
+    <>
+    <Container>
+        {shoes.map((product, index) => (
+            <Col>
+            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%"/>
+            <h4>{ product.title }</h4>
+            <p>{ product.content }</p>
+            <p>{ product.price }</p>
+            </Col>
+            {index % 3 === 0 && index !== 0 && </Container>
+            <Container>}
+        ))}
       <Row>
         <Col>
         <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%"/>
@@ -47,9 +41,6 @@ function App() {
         </Col>
       </Row>
     </Container>
-    
-    </div>
+    </>
   );
 }
-
-export default App;
