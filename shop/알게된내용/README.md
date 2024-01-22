@@ -27,6 +27,30 @@
       이렇게 사용 가능
       ![Alt text](image-1.png)
       아웃렛 쪽에 멤버가 나타남
+    
+    5. 응답받은 함수 가져와서 사용하기 => 원하는 링크로 이동 + 반환 숫자 사용
+     5-1.   let 찾은상품 = props.shoes.find(function(x){
+            return x.id === id
+            }) 해석 하자면 return에 맞는 함수가 function(x)에 들억가고 그 함수가 찾은상품 에 들어감.
+    
+    6. 스타일 컴포넌트 ($ npm install styled-components)
+      6-1. css파일까지 안가고 스타일 해결 가능
+      let Box = styled.div`
+      background : ${(props) => props.bg};
+      padding : 20px;`
+      로 정의 후
+      <Box bg="blue"> 식으로 사용
+
+    7. useEffect
+      7-1. 시작될떄, 코드실행할때, 종료될때 마운트 언마운트 등의 시 실행되는 코드
+      import { useEffect, useState } from 'react'
+      로 선언 후
+      useEffect(() =>{
+        // 2초가 지나면 div 제거
+        const timer = setTimeout(() => {
+          setAlert(false);
+        }, 2000);}[이 함수에 변화가 올때마다 실행]) 식으로 사용되며
+
 
 ## sub2 발표
 mm에서 올라온 내용 확인하기

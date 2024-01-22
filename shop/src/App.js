@@ -5,6 +5,7 @@ import './App.css';
 import { Button, Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import data from './data.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import axios from 'axios'
 
 
 function App() {
@@ -51,7 +52,11 @@ function App() {
         </Route>
       </Routes>
 
-    
+    <button onClick={() => {
+      axios.get(`https://codingapple1.github.io/shop/data2.json      `)
+      .then((서버에서가져온데이터) => { console.log(서버에서가져온데이터.data) })
+      .catch(() => {console.log('실패')})
+    }}>더보기버튼 state를 이용해서 불러오기</button>
     </div>
   );
 }
