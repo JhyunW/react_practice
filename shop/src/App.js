@@ -6,15 +6,18 @@ import { Button, Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import data from './data.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios'
+import Cart from './component/Cart.jsx'
+
+
 
 
 function App() {
 
-  let [shoes] = useState(data)
+  let [shoes, shoesPlus] = useState(data)
   let navigate = useNavigate(); // 페이지 이동 도와주는 훅
   // onClick={() => {navigate('/detail')}} 식으로 사용
-    // onClick={() => {navigate(1 또는 -1)}} 앞으로 뒤로가기
-
+  // onClick={() => {navigate(1 또는 -1)}} 앞으로 뒤로가기
+  let [btnCount, btnClick] = useState(2)
 
   return (    
     <div className="App">
@@ -35,13 +38,12 @@ function App() {
       <Routes>
         {/* Route하나당 한 페이지 */}
         < Route path="/" element={
-          <ProductList product={shoes}></ProductList>
+          <ProductList shoes={shoes} shoesPlus={shoesPlus} btnCount={btnCount} btnClick={btnClick}></ProductList>
         } />
 
         {/* 주소/detail 페이지로 이동시에 위에 추가로 보이게 됨 */}
         < Route path="/detail/:id" element={<Detail shoes={shoes}></Detail>} />
-
-
+        <Route path='/cart' element={ <Cart />}/>
         <Route path='*' element={<div>잘못된 요청</div>}/>
 
         <Route>
@@ -51,12 +53,6 @@ function App() {
           </Route>
         </Route>
       </Routes>
-
-    <button onClick={() => {
-      axios.get(`https://codingapple1.github.io/shop/data2.json      `)
-      .then((서버에서가져온데이터) => { console.log(서버에서가져온데이터.data) })
-      .catch(() => {console.log('실패')})
-    }}>더보기버튼 state를 이용해서 불러오기</button>
     </div>
   );
 }

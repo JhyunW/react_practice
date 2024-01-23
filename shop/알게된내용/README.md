@@ -51,6 +51,21 @@
           setAlert(false);
         }, 2000);}[이 함수에 변화가 올때마다 실행]) 식으로 사용되며
 
+    8.axios
+      8-1. 가져올땐 axios.get
+       axios.get(`https://codingapple1.github.io/shop/data${btnCount}.json`)
+          .then((서버에서가져온데이터) => {
+            shoesPlus([...shoes, ...서버에서가져온데이터.data])
+        btnClick(btnCount + 1)})
+          .catch(() => {console.log('실패')})
+      8-2. 내보낼땐 axios.post('/주소입력', {보낼데이터})
+      8-3. 동시에 ajax요청 하기
+        Promise.all([ axios.get('/url), axios.get('/url2)])
+      8-4. Tip => axios는 원래 문자열만 받아올수 있는데 배열의 경우 양옆에 ""로 닫아주어 문자열로 만듬 이러한 파일 형식을 JSON이라고 함.
+      8-5. fetch의 방법
+        fetch('주소')
+        .then(결과 => 결과.json())
+        .then(data => {})
 
 ## sub2 발표
 mm에서 올라온 내용 확인하기
