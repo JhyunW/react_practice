@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';
+import { addCart } from './../store.js'
+import { useSelector, useDispatch } from 'react-redux'
+
 
 
 function Detail(props) {
@@ -14,6 +17,18 @@ function Detail(props) {
   let [ sale, setAlert] = useState(true)
   let [num, setNum] = useState('')
   let [ tab, setTab] = useState(0)
+  let dispatch = useDispatch()
+  let inCart = useSelector((state) => {return state.inCart})
+
+  useEffect(() => {
+    // 1. 이 페이지에 들어오면 동작(useEffect)
+    let 꺼내기 = localStorage.getItem('watched')
+    꺼내기 = JSON.parse(꺼내기)
+    꺼내기.push(찾은상품.id)
+    localStorage.setItem('watched', JSON.stringify( 꺼내기 ))
+
+  }, [])
+
 
 
   useEffect(() =>{
@@ -58,7 +73,10 @@ function Detail(props) {
           <h4 className="pt-5">{찾은상품.title}</h4>
           <p>{찾은상품.content}</p>
           <p>{찾은상품.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{
+            dispatch(addCart({ id: 찾은상품.id, name: 찾은상품.title, count: 1 }))
+            console.log(inCart)
+          }}>주문하기</button>
         </div>
       </div>
 

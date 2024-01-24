@@ -66,6 +66,20 @@
         fetch('주소')
         .then(결과 => 결과.json())
         .then(data => {})
+    
+    9. switch 문 사용
+      9-1. 
+      function Component2(){
+      var user = 'seller';
+      switch (user){
+        case 'seller' :
+          return <h4>판매자 로그인</h4>
+        case 'customer' :
+          return <h4>구매자 로그인</h4>
+        default : 
+          return <h4>그냥 로그인</h4>
+  }
+}
 
 ## sub2 발표
 mm에서 올라온 내용 확인하기

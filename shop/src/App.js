@@ -1,4 +1,4 @@
-import {useState} from'react';
+import { useEffect, useState } from 'react'
 import ProductList from './component/Product.jsx'
 import Detail from './component/Detail.jsx'
 import './App.css';
@@ -13,6 +13,10 @@ import Cart from './component/Cart.jsx'
 
 function App() {
 
+  useEffect(() => {
+    localStorage.setItem('watched', JSON.stringify( [] ))
+  }, [])
+
   let [shoes, shoesPlus] = useState(data)
   let navigate = useNavigate(); // 페이지 이동 도와주는 훅
   // onClick={() => {navigate('/detail')}} 식으로 사용
@@ -21,12 +25,11 @@ function App() {
 
   return (    
     <div className="App">
-
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="/">리액트 쇼필몰</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">홈</Nav.Link>
+            <Nav.Link as={Link} to="/cart">카트</Nav.Link>
             <Nav.Link href="#features">제품</Nav.Link>
             <Nav.Link href="/event/one">이벤트1</Nav.Link>
             <Nav.Link href="/event/two">이벤트2</Nav.Link>
